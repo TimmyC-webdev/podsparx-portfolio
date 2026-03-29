@@ -1,7 +1,24 @@
+import { useState } from 'react'
 import { HiEnvelope, HiMapPin, HiClock } from 'react-icons/hi2'
 import FadeInSection from '../components/FadeInSection'
 
 function Contact() {
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const data = new FormData(form)
+
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data as any).toString(),
+    })
+
+    setSubmitted(true)
+  }
+
   return (
     <section className="py-24 bg-base-200" id="contact">
       <div className="container mx-auto px-6">
@@ -62,54 +79,80 @@ function Contact() {
             <div className="w-full lg:w-2/3">
               <div className="card bg-base-100 shadow-md w-full">
                 <div className="card-body gap-5 lg:gap-6 p-6 lg:p-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-                    <div className="form-control w-full">
-                      <label className="label pb-2">
-                        <span className="label-text">Your Name</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="John Smith"
-                        className="input input-bordered w-full"
-                      />
+                  {submitted ? (
+                    <div className="text-center py-12">
+                      <p className="text-2xl font-bold mb-2">Message Sent! 🎉</p>
+                      <p className="text-base-content/60">Thanks for reaching out — we'll get back to you within 24 hours.</p>
                     </div>
+                  ) : (
+                    <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
+                      data-netlify-honeypot="bot-field"
+                      onSubmit={handleSubmit}
+                    >
+                      <input type="hidden" name="form-name" value="contact" />
+                      <input type="hidden" name="bot-field" />
 
-                    <div className="form-control w-full">
-                      <label className="label pb-2">
-                        <span className="label-text">Email Address</span>
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="john@example.com"
-                        className="input input-bordered w-full"
-                      />
-                    </div>
-                  </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-4">
+                        <div className="form-control w-full">
+                          <label className="label pb-2">
+                            <span className="label-text">Your Name</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="John Smith"
+                            className="input input-bordered w-full"
+                            required
+                          />
+                        </div>
 
-                  <div className="form-control w-full">
-                    <label className="label pb-2">
-                      <span className="label-text">Subject</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Project Inquiry"
-                      className="input input-bordered w-full"
-                    />
-                  </div>
+                        <div className="form-control w-full">
+                          <label className="label pb-2">
+                            <span className="label-text">Email Address</span>
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            placeholder="john@example.com"
+                            className="input input-bordered w-full"
+                            required
+                          />
+                        </div>
+                      </div>
 
-                  <div className="form-control w-full">
-                    <label className="label pb-2">
-                      <span className="label-text">Message</span>
-                    </label>
-                    <textarea
-                      className="textarea textarea-bordered h-32 lg:h-40 w-full"
-                      placeholder="Tell us about your project..."
-                    ></textarea>
-                  </div>
+                      <div className="form-control w-full mb-4">
+                        <label className="label pb-2">
+                          <span className="label-text">Subject</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="subject"
+                          placeholder="Project Inquiry"
+                          className="input input-bordered w-full"
+                          required
+                        />
+                      </div>
 
-                  <button className="btn btn-secondary w-full mt-2 rounded-full">
-                    Send Message
-                  </button>
+                      <div className="form-control w-full mb-6">
+                        <label className="label pb-2">
+                          <span className="label-text">Message</span>
+                        </label>
+                        <textarea
+                          name="message"
+                          className="textarea textarea-bordered h-32 lg:h-40 w-full"
+                          placeholder="Tell us about your project..."
+                          required
+                        ></textarea>
+                      </div>
+
+                      <button type="submit" className="btn btn-secondary w-full mt-2 rounded-full">
+                        Send Message
+                      </button>
+                    </form>
+                  )}
                 </div>
               </div>
             </div>

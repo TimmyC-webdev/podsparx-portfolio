@@ -1,5 +1,5 @@
 import FadeInSection from '../components/FadeInSection'
-import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiVuedotjs, SiNodedotjs, SiPython, SiGraphql, SiPostgresql, SiMongodb, SiSwift, SiXcode, SiSupabase, SiFigma } from 'react-icons/si'
+import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiVuedotjs, SiPython, SiPostgresql, SiSwift, SiXcode, SiSupabase, SiFigma } from 'react-icons/si'
 import { MdOutlineDesignServices, MdPhoneIphone } from 'react-icons/md'
 import { FaCode, FaServer } from 'react-icons/fa'
 
