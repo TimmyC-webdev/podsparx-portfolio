@@ -1,11 +1,20 @@
-import { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { FaFileInvoiceDollar, FaRocket, FaChartLine, FaGraduationCap } from 'react-icons/fa'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import FadeInSection from '../components/FadeInSection'
 import invoicerImage from '../assets/invoicerscreenshot.png'
 import launchpadImage from '../assets/launchpadscreenshot.png'
 
-const projects = [
+type Project = {
+  title: string
+  description: string
+  tags: string[]
+  icon: React.ReactNode
+  image: string | null
+  link: string
+}
+
+const projects: Project[] = [
   {
     title: "Invoicer",
     description: "A full-stack invoicing tool that creates, sends and tracks professional invoices. Includes client management, payment logging and PDF export - built with React and Supabase.",
@@ -20,7 +29,7 @@ const projects = [
     tags: ["React", "Vite"],
     icon: <FaRocket className="text-accent text-5xl" />,
     image: launchpadImage,
-    link: "launchpadtracker.netlify.app"
+    link: "https://launchpadtracker.netlify.app"
   },
   {
     title: "Revcast",
@@ -43,11 +52,8 @@ const projects = [
 function Projects() {
   const carouselRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
-  useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
-  }, [])
+  const [isTouchDevice] = useState(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0)
 
   const scroll = (direction: 'left' | 'right') => {
     if (!carouselRef.current) return
