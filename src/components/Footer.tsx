@@ -13,10 +13,10 @@ function Footer() {
         </p>
         <p className="text-base-content/60">Crafting digital products with purpose & precision.</p>
         <div className="flex gap-6 mt-2">
-          <a href="#" className="btn btn-ghost btn-circle text-xl hover:text-primary transition-colors">
+          <a href="https://github.com/TimmyC-webdev" className="btn btn-ghost btn-circle text-xl hover:text-primary transition-colors">
             <FaGithub />
           </a>
-          <a href="#" className="btn btn-ghost btn-circle text-xl hover:text-primary transition-colors">
+          <a href="https://www.linkedin.com/in/timea-csomor/" className="btn btn-ghost btn-circle text-xl hover:text-primary transition-colors">
             <FaLinkedin />
           </a>
           <a href="#" className="btn btn-ghost btn-circle text-xl hover:text-primary transition-colors">
