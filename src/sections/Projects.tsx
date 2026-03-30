@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { FaFileInvoiceDollar, FaRocket, FaChartLine, FaGraduationCap } from 'react-icons/fa'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import FadeInSection from '../components/FadeInSection'
@@ -43,6 +43,11 @@ const projects = [
 function Projects() {
   const carouselRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
 
   const scroll = (direction: 'left' | 'right') => {
     if (!carouselRef.current) return
@@ -70,7 +75,6 @@ function Projects() {
           </div>
         </FadeInSection>
 
-        {/* Carousel with arrows */}
         <div className="relative">
           <div
             ref={carouselRef}
@@ -81,7 +85,7 @@ function Projects() {
                 <div className="group card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 w-full relative overflow-hidden">
 
                   {/* Default view */}
-                  <div className="card-body transition-opacity duration-300 group-hover:opacity-0">
+                  <div className={`card-body transition-opacity duration-300 ${!isTouchDevice ? 'group-hover:opacity-0' : ''}`}>
                     <div className="mb-4">{project.icon}</div>
                     <h3 className="card-title text-xl">{project.title}</h3>
                     <p className="text-base-content/70 text-sm leading-relaxed">{project.description}</p>
@@ -95,24 +99,26 @@ function Projects() {
                     </div>
                   </div>
 
-                  {/* Hover image overlay */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {project.image ? (
-                      <div className="relative w-full h-full">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-2xl opacity-80" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl" />
-                        <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                  {/* Hover overlay - desktop only */}
+                  {!isTouchDevice && (
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {project.image ? (
+                        <div className="relative w-full h-full">
+                          <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-2xl opacity-80" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl" />
+                          <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                            <a href={project.link} className="btn btn-secondary btn-sm rounded-full px-6">View Project</a>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="w-full h-full bg-primary/10 flex flex-col items-center justify-center rounded-2xl gap-4">
+                          {project.icon}
+                          <p className="text-base-content/60 text-sm">Project coming soon</p>
                           <a href={project.link} className="btn btn-secondary btn-sm rounded-full px-6">View Project</a>
                         </div>
-                      </div>
-                    ) : (
-                      <div className="w-full h-full bg-primary/10 flex flex-col items-center justify-center rounded-2xl gap-4">
-                        {project.icon}
-                        <p className="text-base-content/60 text-sm">Project coming soon</p>
-                        <a href={project.link} className="btn btn-secondary btn-sm rounded-full px-6">View Project</a>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  )}
 
                 </div>
               </div>
