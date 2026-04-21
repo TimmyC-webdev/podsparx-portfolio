@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { FaApple, FaPlay, FaStar } from "react-icons/fa";
+import { FaApple, FaPlay } from "react-icons/fa";
 
 export default function PugletLanding() {
   useEffect(() => {
