@@ -9,11 +9,12 @@ import Contact from './sections/Contact'
 import Footer from './components/Footer'
 import PrivacyPolicy from './pages/PrivacyPolicy.tsx'
 import PugletPrivacy from './pages/PugletPrivacy.tsx'
+import PugletLanding from './pages/PugletLanding.tsx' // 👈 ADD THIS
 
 function App() {
   return (
-    <div>
-       <Helmet>
+    <>
+      <Helmet>
         <title>Podsparx | Digital Product Studio</title>
         <meta name="description" content="PodSparx is a tech boutique studio crafting iOS apps, web apps, SaaS products, and AI-powered experiences - built with precision and purpose." />
         <link rel="canonical" href="https://podsparx.com/" />
@@ -30,22 +31,52 @@ function App() {
         <meta name="twitter:image" content="https://podsparx.com/og-image.jpg" />
       </Helmet>
 
-      <Navbar />
       <Routes>
-        <Route path="/" element={
-          <main className="pt-20">
-            <Hero />
-            <About />
-            <Projects />
-            <Skills />
-            <Contact />
-          </main>
-        } />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/privacy/puglet" element={<PugletPrivacy />} />
+        {/* 🔹 MAIN WEBSITE (with navbar + footer) */}
+        <Route
+          path="/"
+          element={
+            <div>
+              <Navbar />
+              <main className="pt-20">
+                <Hero />
+                <About />
+                <Projects />
+                <Skills />
+                <Contact />
+              </main>
+              <Footer />
+            </div>
+          }
+        />
+
+        {/* 🔹 OTHER NORMAL PAGES */}
+        <Route
+          path="/privacy"
+          element={
+            <div>
+              <Navbar />
+              <PrivacyPolicy />
+              <Footer />
+            </div>
+          }
+        />
+
+        <Route
+          path="/privacy/puglet"
+          element={
+            <div>
+              <Navbar />
+              <PugletPrivacy />
+              <Footer />
+            </div>
+          }
+        />
+
+        {/* 🔹 PUGLET LANDING (NO NAVBAR / FOOTER) */}
+        <Route path="/puglet" element={<PugletLanding />} />
       </Routes>
-      <Footer />
-    </div>
+    </>
   )
 }
 
