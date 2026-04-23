@@ -20,7 +20,7 @@ const projects: Project[] = [
 
   {
     title: "Educational iOS App",
-    description: "An iOS educational app, includes a freemium model. Coming soon to the App Store.",
+    description: "An iOS educational app, includes a freemium model. Designed and developed a playful math adventure app for children, combining game mechanics, animated storytelling, and intuitive educational interactions.",
     tags: ["SwiftUI", "Supabase", "iOS", "In-App Purchases"],
     icon: <FaGraduationCap className="text-accent text-5xl" />,
     image: pugletAppImage,
