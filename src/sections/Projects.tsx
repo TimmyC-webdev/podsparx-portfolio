@@ -4,6 +4,8 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import FadeInSection from '../components/FadeInSection'
 import invoicerImage from '../assets/invoicerscreenshot.png'
 import launchpadImage from '../assets/launchpadscreenshot.png'
+import pugletAppImage from '../assets/puglet-app.png'
+
 
 type Project = {
   title: string
@@ -15,6 +17,15 @@ type Project = {
 }
 
 const projects: Project[] = [
+
+  {
+    title: "Educational iOS App",
+    description: "An iOS educational app, includes a freemium model. Coming soon to the App Store.",
+    tags: ["SwiftUI", "Supabase", "iOS", "In-App Purchases"],
+    icon: <FaGraduationCap className="text-accent text-5xl" />,
+    image: pugletAppImage,
+    link: "https://apps.apple.com/gb/app/puglet/id6761605649"
+  },
   {
     title: "Invoicer",
     description: "A full-stack invoicing tool that creates, sends and tracks professional invoices. Includes client management, payment logging and PDF export - built with React and Supabase.",
@@ -39,14 +50,7 @@ const projects: Project[] = [
     image: null,
     link: "#"
   },
-  {
-    title: "Educational iOS App",
-    description: "An iOS educational app, includes a freemium model. Coming soon to the App Store.",
-    tags: ["SwiftUI", "Supabase", "iOS", "In-App Purchases"],
-    icon: <FaGraduationCap className="text-accent text-5xl" />,
-    image: null,
-    link: "#"
-  },
+
 ]
 
 function Projects() {
