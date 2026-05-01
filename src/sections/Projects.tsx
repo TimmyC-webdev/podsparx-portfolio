@@ -4,7 +4,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import FadeInSection from '../components/FadeInSection'
 import invoicerImage from '../assets/invoicerscreenshot.png'
 import launchpadImage from '../assets/launchpadscreenshot.png'
-import pugletAppImage from '../assets/puglet-app.png'
+import pugletAppImage from '../assets/puglet-appicon.png'
 
 
 type Project = {
@@ -43,7 +43,7 @@ const projects: Project[] = [
     link: "https://launchpadtracker.netlify.app"
   },
   {
-    title: "Revcast",
+    title: "Peekast",
     description: "A machine learning web app that analyses uploaded revenue data and generates 3, 6 and 12 month forecasts. Includes goal tracking and trend insights - built with React, Python and scikit-learn.",
     tags: ["React", "Python", "Scikit-learn", "Supabase"],
     icon: <FaChartLine className="text-accent text-5xl" />,
