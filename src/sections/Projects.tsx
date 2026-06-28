@@ -26,7 +26,7 @@ const projects: Project[] = [
   {
     title: 'Peekast',
     description:
-      'A machine learning web app that analyses uploaded revenue data and generates 3, 6 and 12 month forecasts. Includes goal tracking and trend insights - built with React, Python and scikit-learn.',
+      'An AI-powered freelancer dashboard for managing clients, projects, invoices and revenue in one place. Uses machine learning to forecast future income, track financial goals, generate professional invoices and provide actionable business insights. Built with React, Python, scikit-learn and Supabase.',
     tags: ['React', 'Python', 'Scikit-learn', 'Supabase'],
     icon: <FaChartLine className="text-accent text-5xl" />,
     image: peekastImage,
